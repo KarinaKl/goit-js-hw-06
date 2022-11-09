@@ -5,20 +5,15 @@ form.addEventListener("submit", onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
 
-  const formData = new FormData(event.currentTarget);
-  const logginData = {};
+  const {
+    elements: { email, password },
+  } = event.currentTarget;
 
-  formData.forEach((value, name) => {
-    logginData[name] = value;
-  });
+  if (email.value === "" || password.value === "") {
+    return alert("Всі поля повинні бути заповнені!");
+  }
 
-  console.log(logginData);
-
-  const mail = event.currentTarget.elements.email.value;
-  const password = event.currentTarget.elements.password.value;
-  if (mail !== "" && password !== "") {
-    logginData = { mail, password };
-  } else alert("Всі поля повинні бути заповнені");
+  console.log({ Email: email.value, Password: password.value });
 
   event.currentTarget.reset();
 }
